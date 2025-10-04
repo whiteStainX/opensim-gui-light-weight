@@ -1,42 +1,193 @@
 #root {
-  max-width: 1280px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f2a40, #08111d 70%);
+  color: #f1f5f9;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2.5rem clamp(1.5rem, 3vw, 4rem);
+  max-width: 1200px;
+  gap: 2.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+  margin: 0 0 0.35rem;
+}
+
+.app-title {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.app-subtitle {
+  margin: 0;
+  max-width: 48ch;
+  color: rgba(226, 232, 240, 0.85);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+}
+
+.visualizer-page {
+  display: flex;
+  flex: 1;
+}
+
+.visualizer-layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  width: 100%;
+}
+
+.visualizer-stage {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+}
+
+.visualizer-canvas {
+  width: 100%;
+  height: min(60vh, 560px);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: #0b1f33;
+  display: block;
+}
+
+.connection-panel {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  backdrop-filter: blur(12px);
+}
+
+.connection-panel__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.connection-panel__status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+.connection-panel__status[data-status='connected'] {
+  color: #4ade80;
+}
+
+.connection-panel__status[data-status='connecting'] {
+  color: #facc15;
+}
+
+.connection-panel__status[data-status='error'] {
+  color: #f87171;
+}
+
+.connection-panel__error {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: #f87171;
+}
+
+.connection-panel__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.connection-panel__button {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(30, 41, 59, 0.85);
+  color: #e2e8f0;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+.connection-panel__button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(148, 163, 184, 0.8);
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.connection-panel__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.connection-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.connection-panel__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.connection-panel__message {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: rgba(226, 232, 240, 0.9);
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 320px;
+  overflow: auto;
+}
+
+@media (max-width: 960px) {
+  .visualizer-layout {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  .connection-panel {
+    order: -1;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .visualizer-canvas {
+    height: min(50vh, 420px);
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
