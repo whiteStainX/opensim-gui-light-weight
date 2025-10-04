@@ -12,10 +12,12 @@ The original OpenSim GUI uses a Java-based backend and a web-based frontend for 
 
 ## Plan for React Integration
 
-The plan is to replace the existing Three.js frontend with a new React application. This will involve:
+The plan is to replace the existing Three.js frontend with a new React application. A template Vite/React project has been set up in the `light-weight` directory. This will serve as the foundation for the new visualization components.
 
-1.  Setting up a new React project.
-2.  Creating a React component to host the Three.js canvas.
+The next steps involve:
+
+1.  Understanding the data flow and API of the original OpenSim GUI.
+2.  Developing reusable React components for the visualization.
 3.  Replicating the existing communication logic between the frontend and the Jetty server to load and control the 3D models.
 
 For more detailed technical information, please refer to the `PLAN.md` file.
